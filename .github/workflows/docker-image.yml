@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  TAG: $(date +%s)
+  TAG: "${{ steps.current-time.outputs.time }}"
   
 jobs:
 
@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag chamfort/rabbitmq-consumer:$TAG
+      run: docker build . --file Dockerfile --tag chamfort/rabbitmq-consumer:${{ TAG }}
      
     - name: Login to DockerHub
       uses: docker/login-action@v1
@@ -27,6 +27,6 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         
     - name: Publish Image to DockerHub
-      run: docker push ${{secrets.DOCKERHUB_USERNAME }}/rabbitmq-consumer:$TAG
+      run: docker push ${{secrets.DOCKERHUB_USERNAME }}/rabbitmq-consumer:${{ TAG }}
 
 
