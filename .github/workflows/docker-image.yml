@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  TAG: "${{ steps.current-time.outputs.time }}"
+  TAG: $(date +%Y%m%d%H%M)
   
 jobs:
 
