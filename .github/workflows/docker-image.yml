@@ -23,10 +23,5 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         
-    - name: Publish Tagged Image to Dockerhub
+    - name: Publish image to Dockerhub
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/rabbitmq-consumer:1.0.0
-      
-    - name: Publish Image as LATEST in Dockerhub
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/rabbitmq-consumer:latest
-
-
